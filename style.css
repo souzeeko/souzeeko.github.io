@@ -131,6 +131,16 @@ h2 {
     color: white;
     font-weight: bold;
     border-color: #d9534f;
-   
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 5px;
   }
+
+ 
+
+
   

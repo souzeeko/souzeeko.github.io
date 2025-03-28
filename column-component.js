@@ -1,32 +1,24 @@
 import { createElement } from '../framework/render.js';
 
-function createColumnTemplate(title, tasks, className) {
-  let tasksHtml = '';
-  tasks.forEach(task => {
-    tasksHtml += `<div class="task ${className}-state">${task}</div>`;
-  });
-
-  const clearButton = className === 'trash' ? 
-    '<button class="clear-btn">✖ Очистить</button>' : '';
-
+function createColumnTemplate(id, title, type) {
   return `
-    <div class="column ${className}">
+    <div class="column ${type}" data-column-id="${id}">
       <h2>${title}</h2>
-      ${tasksHtml}
-      ${clearButton}
+      <div class="tasks-container"></div>
     </div>
   `;
 }
 
 export default class ColumnComponent {
-  constructor(title, tasks, className) {
+  constructor(id, title, type, hasClearButton = false) {
+    this.id = id;
     this.title = title;
-    this.tasks = tasks;
-    this.className = className;
+    this.type = type;
+    this.hasClearButton = hasClearButton;
   }
 
   getTemplate() {
-    return createColumnTemplate(this.title, this.tasks, this.className);
+    return createColumnTemplate(this.id, this.title, this.type);
   }
 
   getElement() {
@@ -34,6 +26,10 @@ export default class ColumnComponent {
       this.element = createElement(this.getTemplate());
     }
     return this.element;
+  }
+
+  getTasksContainer() {
+    return this.getElement().querySelector('.tasks-container');
   }
 
   removeElement() {
