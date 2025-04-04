@@ -1,13 +1,9 @@
 import { createElement } from '../framework/render.js';
 
-export default class TaskComponent {
-  constructor(task) {
-    this.task = task;
-  }
-
+export default class ClearButtonComponent {
   getTemplate() {
     return `
-      <div class="task ${this.task.status}-state">${this.task.title}</div>
+      <button class="clear-btn">✖ Очистить</button>
     `;
   }
 
