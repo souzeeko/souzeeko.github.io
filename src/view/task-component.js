@@ -17,15 +17,14 @@ function createTaskTemplate(text, columnType, isButton = false) {
 }
 
 export default class TaskComponent {
-  constructor(id, text, columnType, isButton = false) {
-    this.id = id;
-    this.text = text;
-    this.columnType = columnType;
-    this.isButton = isButton;
+  constructor(task) {
+    this.task = task;
   }
 
   getTemplate() {
-    return createTaskTemplate(this.text, this.columnType, this.isButton);
+    return `
+      <div class="task backlog-state"> ${this.task}</div>
+    `;
   }
 
   getElement() {
